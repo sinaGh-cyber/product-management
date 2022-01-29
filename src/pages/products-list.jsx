@@ -41,8 +41,9 @@ const ProductsList = () => {
             product={allProductsArray[0]}
           />
         )}
+
         <div className="card-body">
-          {!!allProductsArray && (
+          {!!allProductsArray?.length && (
             <>
               <div
                 style={{
@@ -89,6 +90,8 @@ const ProductsList = () => {
               </ul>
             </>
           )}
+
+          {!allProductsArray?.length && <div>محصولی یافت نشد!"</div>}
         </div>
       </div>
     </div>

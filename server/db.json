@@ -1,11 +1,3 @@
 {
-  "products": [
-    {
-      "id": "a54",
-      "name": "A54",
-      "price": 7500000,
-      "category": "موبایل",
-      "availability": 33
-    }
-  ]
+  "products": []
 }
