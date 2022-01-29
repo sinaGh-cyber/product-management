@@ -19,49 +19,49 @@ const ProductsList = () => {
   }, [deleteReqSuccessesWatcher]);
 
   return (
-    <div className="container">
-      <div className="card">
-        {AlertConfig.showAlert && (
-          <RemoveModal
-            onClose={(e) => {
-              AlertConfig.showAlert = false;
-              setAlertConfig({ ...AlertConfig });
-            }}
-            onConfirm={(e) => {
-              removeProductAPI(AlertConfig.product.id).then((res) => {
-                if (JSON.stringify(res.status)[0] === '2') {
-                  AlertConfig.showAlert = false;
-                  setAlertConfig({ ...AlertConfig });
-                  setDeleteReqSuccessesWatcher({
-                    ...deleteReqSuccessesWatcher,
-                  });
-                }
-              });
-            }}
-            product={allProductsArray[0]}
-          />
-        )}
+    <>
+      {AlertConfig.showAlert && (
+        <RemoveModal
+          onClose={(e) => {
+            AlertConfig.showAlert = false;
+            setAlertConfig({ ...AlertConfig });
+          }}
+          onConfirm={(e) => {
+            removeProductAPI(AlertConfig.product.id).then((res) => {
+              if (JSON.stringify(res.status)[0] === '2') {
+                AlertConfig.showAlert = false;
+                setAlertConfig({ ...AlertConfig });
+                setDeleteReqSuccessesWatcher({
+                  ...deleteReqSuccessesWatcher,
+                });
+              }
+            });
+          }}
+          product={allProductsArray[0]}
+        />
+      )}{' '}
+      <div className="container">
+        <div className="card">
+          <div className="card-body">
+            {!!allProductsArray?.length && (
+              <>
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'culm',
+                    justifyContent: 'space-evenly',
+                    marginLeft: '20vW',
+                  }}
+                >
+                  <div>نام محصول</div>
+                  <div>قیمت</div>
+                  <div>دسته بندی</div>
+                  <div>موجودی</div>
+                </div>
 
-        <div className="card-body">
-          {!!allProductsArray?.length && (
-            <>
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'culm',
-                  justifyContent: 'space-evenly',
-                  marginLeft: '20vW',
-                }}
-              >
-                <div>نام محصول</div>
-                <div>قیمت</div>
-                <div>دسته بندی</div>
-                <div>موجودی</div>
-              </div>
-              <ul>
                 {allProductsArray.map((item, idx) => {
                   return (
-                    <li
+                    <div
                       style={{
                         display: 'flex',
                         flexDirection: 'culm',
@@ -84,17 +84,17 @@ const ProductsList = () => {
                         حذف
                       </button>
                       <Link to={`products/edit/${item.id}`}>ویرایش</Link>
-                    </li>
+                    </div>
                   );
                 })}
-              </ul>
-            </>
-          )}
+              </>
+            )}
 
-          {!allProductsArray?.length && <div>محصولی یافت نشد!"</div>}
+            {!allProductsArray?.length && <div>محصولی یافت نشد!</div>}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
