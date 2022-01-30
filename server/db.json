@@ -13,13 +13,6 @@
       "price": 7500000,
       "category": "موبایل",
       "availability": 33
-    },
-    {
-      "id": "a56",
-      "name": "A56",
-      "price": 1500000,
-      "category": "موبایل",
-      "availability": 25
     }
   ]
 }

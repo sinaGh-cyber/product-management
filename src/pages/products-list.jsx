@@ -83,7 +83,9 @@ const ProductsList = () => {
                       >
                         حذف
                       </button>
-                      <Link to={`products/edit/${item.id}`}>ویرایش</Link>
+                      <button>
+                        <Link to={`products/edit/${item.id}`}>ویرایش</Link>
+                      </button>
                     </div>
                   );
                 })}
