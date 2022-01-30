@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getAllProductsAPI, removeProductAPI } from 'services/api';
 import { RemoveModal } from '../components/productlist/RemoveModal';
@@ -17,6 +17,8 @@ const ProductsList = () => {
       setAllProductsArray(res.data);
     });
   }, [deleteReqSuccessesWatcher]);
+
+  const LinkToClick = useRef(null);
 
   return (
     <>
@@ -64,8 +66,7 @@ const ProductsList = () => {
                     <div
                       style={{
                         display: 'flex',
-                        flexDirection: 'culm',
-                        justifyContent: 'space-around',
+                        justifyContent: 'space-evenly',
                         margin: '8px 0',
                       }}
                       key={item.id}
@@ -74,18 +75,23 @@ const ProductsList = () => {
                       <div>{item.price}</div>
                       <div>{item.category}</div>
                       <div>{item.availability}</div>
-                      <button
-                        onClick={(e) => {
-                          AlertConfig.showAlert = true;
-                          AlertConfig.product = item;
-                          setAlertConfig({ ...AlertConfig });
-                        }}
-                      >
-                        حذف
-                      </button>
-                      <button>
-                        <Link to={`products/edit/${item.id}`}>ویرایش</Link>
-                      </button>
+
+                      <div className="buttonGroup">
+                        {' '}
+                        <button
+                          style={{ margin: '0', marginLeft: '2px' }}
+                          onClick={(e) => {
+                            AlertConfig.showAlert = true;
+                            AlertConfig.product = item;
+                            setAlertConfig({ ...AlertConfig });
+                          }}
+                        >
+                          حذف
+                        </button>
+                        <Link role={'button'} to={`products/${item.id}/edit`}>
+                          <button>ویرایش</button>
+                        </Link>
+                      </div>
                     </div>
                   );
                 })}
